@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"regexp"
 	"strings"
 )
@@ -34,8 +35,7 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	//fmt.Println(string(body))
-	/* gefgha*/
+	/* 正则转换*/
 	src := string(body)
 
 	//将HTML标签全转换成小写
@@ -58,5 +58,23 @@ func main() {
 	re, _ = regexp.Compile("\\s{2,}")
 	src = re.ReplaceAllString(src, "\n")
 
-	fmt.Println(strings.TrimSpace(src))
+	/*fmt.Println(strings.TrimSpace(src))*/
+	/*write*/
+	f, err := os.Create("test.txt")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	l, err := f.WriteString(strings.TrimSpace(src))
+	if err != nil {
+		fmt.Println(err)
+		f.Close()
+		return
+	}
+	fmt.Println(l, "bytes written successfully")
+	err = f.Close()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 }
