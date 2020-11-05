@@ -3,9 +3,10 @@ package model
 import (
 	"fmt"
 	"ginblog/utils"
+	"gorm.io/driver/mysql"
 	"gorm.io/gorm/schema"
 	"gorm.io/gorm"
-	"gorm.io/driver/mysql"
+	//"gorm.io/driver/mysql "
 	"time"
 )
 
@@ -20,7 +21,7 @@ func InitDb(){
 		utils.DbPort,
 		utils.DbName,
 	)
-	db,err = gorm.Open(mysql.Open(dns),&gorm.Config{
+	db,err = gorm.Open(mysql.Open(dns) ,&gorm.Config{
 		DisableForeignKeyConstraintWhenMigrating: true,
 		SkipDefaultTransaction: true,
 		NamingStrategy: schema.NamingStrategy{
