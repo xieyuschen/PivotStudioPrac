@@ -1,114 +1,33 @@
-# 爬虫笔记
+# PivotStudioPrac
 
-## 20201103
+后端项目实习，以下两个项目选项二选一。项目管理选择Github进行git管理，请在该仓库创建以自己名字为名的分支，注请把github账户私戳给我，邀请进入该仓库。
+[仓库在这里:)](https://github.com/Xieyuschen/PivotStudioPrac)
 
-​																																															from AD钙奶 SBY
+## 1. 博客项目
 
-### 适用于UTF-8（爬了自己的网站）0.0.1
+个人博客主要由认证系统与发帖系统组成。现在需要自己实现一个基础的个人博客后端项目。
 
-```go
-package main
+- 注册账号，登录以及忘记密码
+  创建数据库，创建一个表，然后通过与数据库交互进行该模块的操作。值得一提的是在数据库存用户密码的时候，**不要存明文**，通常对密码hash后存入数据库。登陆的时候可以使用Cookie技术，这样在之后可以记住登陆的状态（库函数可以完成这个功能，可以去查一些资料）Cookie技术简单来说就是登录成功后，后端在response信息中放置一个`Set-Cookie`(这是一个键值对，Set-Cookie：blabla)。浏览器在发现set-cookie这个response里的信息时，再之后的request头带一个cookie。之后服务器端检验cookie的有效性即可实现访问对应的资源。
+- 所有对于资源的（所发帖子）访问必须先登录
+  可以编写中间件，请求发送之后检查请求头是否拥有登陆时候的Cookie，如果没有则直接返回400状态码，提示登陆。也可以在每个api的第一步首先检验cookie是否有效。
+- 登陆后，用户可以进行发帖，查看自己的帖子，对之前发帖信息进行编辑以及删除自己所发的帖子
+  创建关于帖子的数据库，然后进行数据库的增删查改。那么后端如何知道是哪个用户在发帖呢？Cookie在生成的时候可以设置cookie里存储一些什么样的信息。比如我可以存储用户的用户名，这样就可以在需要的时候获取用户名，确定究竟是哪个用户在操作。
+- 建议大二的同学添加邮件服务，在注册的时候可以使用邮件发送验证码
+  这个主要是使用邮件的SMTP服务，首先要去邮件客户端开启SMTP服务并获得一个密钥，然后使用Go进行SMTP服务发送邮件。生成验证码可以存储在数据库里，然后在验证的时候去查询数据库即可。
+- *精力充沛的的同学可以添加评论功能
+  评论需要创建一个新表，评论与帖子具有某种关系，需要分析关系（一对一，一对多，多对多？）然后设计一个数据库。能够完成增删查改就可以了:)
 
-import (
-   "fmt"
-   "io/ioutil"
-   "net/http"
+## ZhihuDailyGenerator
 
-)
+知乎是一个质量较高的中文社区，但是现在用户不希望频繁打开app去刷热榜下的高赞回答以及看我喜欢的答主所发的内容。所以希望通过生成包含若干热榜下高赞回答的知乎日报，并以邮件形式给订阅用户发送。该项目将作为服务在后台运行。简要来说需要实现以下要求：
 
-func main(){
-
-   resp,err:=http.Get("http://www.shouxindehai.cn/")
-   //异常时进行panic
-   if err!=nil{
-      panic(err)
-   }
-   //延时关闭
-   defer resp.Body.Close()
-
-   //状态码错误时输出错误码
-   if resp.StatusCode!=http.StatusOK{
-      fmt.Printf("Error ststus code:%d",resp.StatusCode)
-   }
-
-   //借助io.reader获取流的信息
-   result,err:=ioutil.ReadAll(resp.Body)
-   if err!=nil{
-      panic(err)
-   }
-   fmt.Printf("%s",result)
-   //href<我理解为链接 有这个标签就会有子层的目录 比方说http://www.shouxindehai.cn/index.php/cs/>
-   //在这里可以在终端搜索这个目录发现可以找到 说明是可以爬到的
-   //该段代码适用于utf-8的编码的网址
-   //gbk会乱码的
-
-
-}
-```
-
-### 通用版（要去下载安装）
-
-第二集里有镜像站下载地址（有时间了再优化吧）
-
-https://www.bilibili.com/video/BV1XK411V7DT?p=2
-
-```go
-package main
-
-import (
-   "fmt"
-   "io/ioutil"
-   "net/http"
-)
-
-func main(){
-
-   resp,err:=http.Get("http://www.shouxindehai.cn/")
-   //异常时进行panic
-   if err!=nil{
-      panic(err)
-   }
-   //延时关闭
-   defer resp.Body.Close()
-##
-   //状态码错误时输出错误码
-   //if resp.StatusCode!=http.StatusOK{
-   // fmt.Printf("Error ststus code:%d",resp.StatusCode)
-   //}
-   //注释部分都是懒得下载第三方包 这一部分是调用后面的函数来实现对编码方式的检查
-   //bodyReader:=bufio.NewReader(resp.Body)
-   //e:=determinEncoding(bodyReader)
-   ////这里实现编码转换
-   //utf8Reader:=transform.NewReader(bodyReader,e.NewDecoder())
-   //借助io.reader获取流的信息
-   //result,err:=ioutil.ReadAll(utf8Reader)假如发生编码转换则需要下一行改参数名
-##
-   result,err:=ioutil.ReadAll(resp.Body)
-   if err!=nil{
-      panic(err)
-   }
-   fmt.Printf("%s",result)
-   //href<我理解为链接 有这个标签就会有子层的目录 比方说http://www.shouxindehai.cn/index.php/cs/>
-   //在这里可以在终端搜索这个目录发现可以找到 说明是可以爬到的
-   //该段代码适用于utf-8的编码的网址
-   //gbk会乱码的
-   //写到这里发现知乎有反扒
-
-}
-##
-//这还得用第三方库 还得翻墙 那真麻烦 那就算了吧 代码留在这里好了
-//设计一个检查编码方式的函数（知乎用的是utf-8所以用不上貌似 先注释掉备份吧）
-// func derterminEncoding(r*bufio.Reader)encoding.Encoding{
-//    bytes,err:=r.Peek(n:1024)
-//    if err1=nil{
-//       log.Printf("fetch error:%v",err)
-//       return unicode.UTF8
-//    }
-//
-//    e,_,_:=charset.DetermineEncoding(bytes,contentType:"")
-//    return e
-// }
-##
-```
-
-井号部分是需要修改的部分（改完后可以实现通用爬）
+- 知乎日报可以由热榜的高赞回答构成，需要获取某话题下的若干个回答的信息，例如回答内容，赞数，答主信息等
+  知乎很多信息需要登录才能获取，所以说首先你需要获取你自己知乎的Cookie（可以浏览器按F12然后找到一个请求在里面找到）。使用Go获取内容的时候，我们需要制作一个Http请求，我们可以使用`http`库，什么库都可以只要能发请求即可。配置请求头的相关参数，并把Cookie加到请求头中。这样完成了对知乎资源页面的访问。
+  请求发送后获得了html界面的内容，那么如何获取里面的内容，赞数作者等信息呢?我们可以选择`html parser`（找一个htmlparser第三方库进行解析html从中获取我们想要的内容），当然也可以选择使用正则表达式对想要获取的内容进行匹配。甚至可以选用函数对获取的字符串进行处理，不过我十分不建议用这种过于丑陋的方法。
+- 可以将获得的数据保存为txt文件
+  这个就是文件的IO操作，开启文件->以一定的格式写内容->关闭文件
+- 大二的同学建议定时将所获取生成的文件以邮件格式发送给指定用户
+  关于邮件的内容项目1里面有介绍，可以看下了解大致的使用思路。
+- *精力充足的同学建议实现对指定对特定知乎用户更新的推送
+  实现一个函数对是否更新定期扫描，如果检测到更新（思考下如何判断一个用户更新了内容），然后获取更新的内容并以邮件发送。
