@@ -7,7 +7,9 @@ import (
 )
 
 func InitRouter() {
-	gin.SetMode(utils.AppMode)
+	//gin.SetMode(utils.AppMode)
+	gin.SetMode(gin.ReleaseMode)
+
 	r := gin.Default()
 
 	router := r.Group("api.v1")

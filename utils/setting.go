@@ -10,7 +10,7 @@ var (
 	DbHost string
 	DbPort string
 	DbUser string
-	DbPassword string
+	DbPassWord string
 	DbName string
 )
 
@@ -24,7 +24,7 @@ func init(){
 }
 
 func LoadServer(file *ini.File){
-	AppMode = file.Section("server").Key("AppMode").MustString("debug")
+	AppMode = file.Section("server").Key("AppMode").MustString("release")
 	HttpPort = file.Section("server").Key("HttpPort").MustString(":3000")
 }
 
@@ -32,7 +32,7 @@ func LoadData(file *ini.File){
 	Db = file.Section("database").Key("Db").MustString("mysql")
 	DbHost = file.Section("database").Key("DbHost").MustString("localhost")
 	DbName = file.Section("database").Key("DbName").MustString("3306")
-	DbPassword = file.Section("database").Key("DbPassword").MustString("ginblog")
+	DbPassWord = file.Section("database").Key("DbPassWord").MustString("ginblog")
 	DbPort = file.Section("database").Key("DbPort").MustString("admin123")
 	DbUser = file.Section("database").Key("DbUser").MustString("ginblog")
 
