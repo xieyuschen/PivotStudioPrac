@@ -19,6 +19,11 @@ func InitRouter() {
 		router.GET("users",v1.GetUsers)
 		router.PUT("user/:id",v1.EditUser)
 		router.DELETE("user/:id",v1.DeleteUser)
+		//Article路由接口
+		router.POST("article/add",v1.AddArticle)
+		/*router.GET("article",v1.)*/
+		router.PUT("article/:id",v1.EditArt)
+		router.DELETE("article/:id",v1.DeleteArt)
 	}
 	_ = r.Run(utils.HttpPort)
 }
