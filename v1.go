@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"regexp" //正则表达式
+	"time"
 )
 
 func main(){
@@ -52,6 +53,10 @@ func paraseContent(content []byte){
 		f, err1 = os.Create(filename) //创建文件
 		fmt.Println("文件不存在")
 	}
+	//打印时间戳
+	now := time.Now()
+	check(err1)
+	n, err1 := io.WriteString(f, "今年第"+strconv.Itoa(now.YearDay())+"期\n")
 	re:=regexp.MustCompile(`<td class="([^"]+)"><a href="([^"]+)" target="([^"]+)" rel="([^"]+)" itemid="([^"]+)">([^"]+)</a></td>
 		                                    <td>([^"]+)</td>`)
 	match:=re.FindAllSubmatch(content,-1)
@@ -59,7 +64,7 @@ func paraseContent(content []byte){
 		j:=strconv.Itoa(i+1)
 		check(err1)
 		//写入文件(字符串)
-		n, err1 := io.WriteString(f, j)
+		n, err1 = io.WriteString(f, j)
 		n, err1 = io.WriteString(f, ":")
 		n, err1 = io.WriteString(f, string(m[6])+"\n")
 		n, err1 = io.WriteString(f, string(m[7])+"\n\n")
