@@ -16,15 +16,13 @@ type User struct{
 	Role int
 }
 //查找用户是否存在
-//这里有点问题，无法判断重复，有空再改
 func CheckUser(name string)(code int){
 	var users User
-	db.Select("username = ?",name) .First(&users)
+	db.Select("id").Where("username = ?",name).First(&users)
 	if users.ID >0{
 		return errmsg.ERROR_USERNAME_USED //1001
-	}else {
-		return errmsg.SUCCSE
 	}
+	return errmsg.SUCCSE
 }
 
 
@@ -81,6 +79,22 @@ func DeleteUser(id int)int{
 	err := db.Where("id = ? ",id).Delete(&user).Error
 	if err!=nil{
 		return errmsg.ERROR
+	}
+	return errmsg.SUCCSE
+}
+
+//登录验证
+func CheckLogin(username string,password string)int{
+	var user User
+	db.Where("username = ?",username).First(&user)
+	if user.ID ==0{
+		return errmsg.ERROR_USER_NOT_EXIST
+	}
+	if ScryptPW(password)!=user.Password{
+		return errmsg.ERROR_PASSWORD_WRONG
+	}
+	if user.Role !=0/*无管理权限*/{
+		return errmsg.ERROR_USER_NOT_RIGHT
 	}
 	return errmsg.SUCCSE
 }
