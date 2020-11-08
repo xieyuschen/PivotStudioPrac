@@ -34,9 +34,7 @@ func main(){
 func paraseContent(content []byte){
 	re:=regexp.MustCompile(`<td class="([^"]+)"><a href="([^"]+)" target="([^"]+)" rel="([^"]+)" itemid="([^"]+)">([^"]+)</a></td>
 		                                    <td>([^"]+)</td>`)
-
 	match:=re.FindAllSubmatch(content,-1)
-
 	for i,m:=range match {
 		fmt.Printf("%d: ", i+1)
 		fmt.Printf("%s \n", m[6])
@@ -45,7 +43,4 @@ func paraseContent(content []byte){
 		break;
 		}
 	}
-		/*for _,n:=range match1{
-			fmt.Printf("%s \n",n[1])
-		}*/
 	}
