@@ -11,11 +11,83 @@ import (
 	"time"
 )
 
-func send() {
+var href_reg *regexp.Regexp
+
+var hrefs_been_found map[string]int
+
+var hrefs_undone []string
+
+func get_all_href(url string) []string {
+	var ret []string
+	resp, err := http.Get(url)
+	if err != nil {
+		fmt.Println(err)
+		return ret
+	}
+	defer resp.Body.Close()
+	body, _ := ioutil.ReadAll(resp.Body)
+
+	hrefs := href_reg.FindAllString(string(body), -1)
+
+	for _, v := range hrefs {
+		str := strings.Split(v, "\"")[1]
+
+		if len(str) < 1 {
+			continue
+		}
+
+		switch str[0] {
+		case 'h':
+			ret = append(ret, str)
+		case '/':
+			if len(str) != 1 && str[1] == '/' {
+				ret = append(ret, "http:"+str)
+			}
+
+			if len(str) != 1 && str[1] != '/' {
+				ret = append(ret, url+str[1:])
+			}
+		default:
+			ret = append(ret, url+str)
+
+		}
+
+	}
+
+	return ret
+}
+
+func init_global_var() {
+	href_pattern := "href=\"(.+?)\""
+	href_reg = regexp.MustCompile(href_pattern)
+
+	hrefs_been_found = make(map[string]int)
+}
+
+func is_href_been_found(href string) bool {
+	_, ok := hrefs_been_found[href]
+	return ok
+}
+
+func add_hrefs_to_undone_list(hrefs []string) {
+	for _, value := range hrefs {
+		ok := is_href_been_found(value)
+		if !ok {
+			fmt.Printf("new url:(%s)\n", value)
+			hrefs_undone = append(hrefs_undone, value)
+			hrefs_been_found[value] = 1
+		} else {
+			hrefs_been_found[value]++
+		}
+
+	}
+}
+func send(a string) {
 	/*完成信息抓取*/
 	//url := "https://tophub.today/n/mproPpoq6O"
 	//url := "https://zhihu.com"
-	url := "https://www.liwenzhou.com/"
+	//url := "https://www.liwenzhou.com/"
+	url := a
 	method := "GET"
 
 	client := &http.Client{}
@@ -106,11 +178,26 @@ func send() {
 	}
 	fmt.Println("\n\nsend mail succes")
 }
+
 func main() {
-	/*定时启动*/
-	for i := 0; i < 1; i++ {
-		send()
-		fmt.Println("sleep")
-		time.Sleep(time.Second)
+	init_global_var()
+
+	var pos = 0
+	//var urls = []string{"https://tophub.today/n/mproPpoq6O"}
+	var urls = []string{"https://www.liwenzhou.com/"}
+	add_hrefs_to_undone_list(urls)
+
+	for j := 0; j < 10; j++ {
+		if pos >= len(hrefs_undone) {
+			break
+		}
+		url := hrefs_undone[0]
+		hrefs_undone = hrefs_undone[1:]
+
+		hrefs := get_all_href(url)
+		send(url)
+		add_hrefs_to_undone_list(hrefs)
+		time.Sleep(time.Second / 10)
 	}
+	fmt.Println("end")
 }

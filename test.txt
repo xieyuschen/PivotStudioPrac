@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="baidu-site-verification" content="code-7nivAemV0f" />
+    <meta name="generator" content="Hugo 0.54.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>【置顶】Go语言学习之路/Go语言教程 | 李文周的博客</title>
+    <meta property="og:title" content="【置顶】Go语言学习之路/Go语言教程 - 李文周的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2020-10-22T00:55:33&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2020-10-22T00:55:33&#43;08:00">
+        
+    <meta name="Keywords" content="Go,Go 教程,Go 语言教程,李文周,七米">
+    <meta name="description" content="李文周的Blog Go语言教程 golang中文教程 李文周博客 qimi Go语言学习之路 Go语言教程 go 教程 免费 视频教程 Golang 七米 娜扎 qimi 小王子 沙河娜扎 Go语言入门教程 新手 go入门 go教程">
+        
+    <meta name="author" content="李文周">
+    <meta property="og:url" content="https://www.liwenzhou.com/posts/Go/go_menu/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+        <link rel="stylesheet" href="/css/sidebar_menu.css">
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?e0a55b64495e292a238b463a78dd56da";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://www.liwenzhou.com">
+                        李文周的博客
+                    </a>
+                
+                <p class="description">Go 语言教程 Go语言学习QQ群：645090316 微信公众号：李文周</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://www.liwenzhou.com">首页</a>
+                    
+                    <a  href="https://www.liwenzhou.com/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://www.liwenzhou.com/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">【置顶】Go语言学习之路/Go语言教程</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2020年10月22日
+                        </date>
+                        
+                        <div class="post-meta meta-category">
+                            |
+                            
+                                <a href="https://www.liwenzhou.com/categories/Golang">Golang</a>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">
+                                本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+                            </span>
+                        </div>
+                        
+                        <div class="post-content">
+                            <p>《Go语言学习之路》博客目录。</p>
+
+<p>2015年底我因为工作原因接触到了Go语言，那时网上关于Go语言的学习资料不多，我就边学边记笔记，一直坚持到现在。我把自己学习Go语言的笔记发布出来是希望能给Go语言社区出一点绵薄之力，帮助更多的人加入Gopher大家庭。</p>
+
+<h2 id="go语言介绍">Go语言介绍</h2>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/about_golang/" target="_blank">为什么你应该学习Go语言？</a>  &rarr;<a href="https://www.bilibili.com/video/av45561733" target="_blank">B站视频链接</a></p>
+
+<h2 id="开发环境准备">开发环境准备</h2>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/install_go_dev/" target="_blank">从零开始搭建Go语言开发环境(新)</a>          &rarr;<a href="https://www.bilibili.com/video/av44686767" target="_blank">B站视频链接</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/00_go_in_vscode/" target="_blank">VS Code配置Go语言开发环境</a>         &rarr;<a href="https://www.bilibili.com/video/av47447817" target="_blank">B站视频链接</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_dependency/" target="_blank">Go依赖管理及Go module使用</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/import_local_package_in_go_module/" target="_blank">如何使用Go module导入本地包</a></p>
+
+<h2 id="go语言基础">Go语言基础</h2>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/01_var_and_const/" target="_blank">Go语言基础之变量和常量</a>        &rarr;<a href="https://www.bilibili.com/video/av48861601" target="_blank">B站视频链接</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/02_datatype/" target="_blank">Go语言基础之基本数据类型</a>  &rarr;<a href="https://www.bilibili.com/video/av49019755" target="_blank">B站视频链接</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/03_operators/" target="_blank">Go语言基础之运算符</a>
+&rarr;<a href="https://www.bilibili.com/video/av50126230/" target="_blank">B站视频链接</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/04_basic/" target="_blank">Go语言基础之流程控制</a>
+&rarr;<a href="https://www.bilibili.com/video/av50126615/" target="_blank">B站视频链接</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/05_array/" target="_blank">Go语言基础之数组</a>
+&rarr;<a href="https://www.bilibili.com/video/av50127704/" target="_blank">B站视频链接</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/06_slice/" target="_blank">Go语言基础之切片</a>
+&rarr;<a href="https://www.bilibili.com/video/av50140694/" target="_blank">B站视频链接</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/08_map/" target="_blank">Go语言基础之map</a>
+&rarr;<a href="https://www.bilibili.com/video/av50141574/" target="_blank">B站视频链接</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/09_function/" target="_blank">Go语言基础之函数</a></p>
+
+<ul>
+<li><a href="https://www.bilibili.com/video/av50143365/" target="_blank">B站视频01函数部分</a></li>
+<li><a href="https://www.bilibili.com/video/av50143975/" target="_blank">B站视频02匿名函数和闭包部分</a></li>
+</ul>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/07_pointer/" target="_blank">Go语言基础之指针</a>
+&rarr;<a href="https://www.bilibili.com/video/av52484116" target="_blank">B站视频链接</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/10_struct/" target="_blank">Go语言基础之结构体</a></p>
+
+<ul>
+<li><a href="https://www.bilibili.com/video/av56762482/" target="_blank">B站视频01自定义类型和类型别名</a></li>
+<li><a href="https://www.bilibili.com/video/av56763586/" target="_blank">B站视频02结构体定义与实例化</a></li>
+<li><a href="https://www.bilibili.com/video/av56975693/" target="_blank">B站视频03方法和接收者</a></li>
+<li><a href="https://www.bilibili.com/video/av58719892/" target="_blank">B站视频04结构体嵌套</a></li>
+<li><a href="https://www.bilibili.com/video/av58720365/" target="_blank">B站视频05结构体字段可见性和JSON</a></li>
+<li><a href="https://www.bilibili.com/video/av58848417/" target="_blank">B站视频06学员信息管理系统练习</a></li>
+</ul>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/11_package/" target="_blank">Go语言基础之包</a>&rarr;<a href="https://www.bilibili.com/video/av61713788/" target="_blank">B站视频链接</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/12_interface/" target="_blank">Go语言基础之接口</a>&rarr;<a href="https://www.bilibili.com/video/av61715879/" target="_blank">B站视频链接</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/13_reflect/" target="_blank">Go语言基础之反射</a></p>
+
+<ul>
+<li><a href="https://www.bilibili.com/video/av62692359" target="_blank">B站视频01反射初识</a></li>
+<li><a href="https://www.bilibili.com/video/av62732337" target="_blank">B站视频02结构体反射</a></li>
+</ul>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/14_concurrence/" target="_blank">Go语言基础之并发</a></p>
+
+<ul>
+<li><a href="https://www.bilibili.com/video/av63493920" target="_blank">B站视频01goroutine</a></li>
+<li><a href="https://www.bilibili.com/video/av63935227/" target="_blank">B站视频02channel</a></li>
+<li><a href="https://www.bilibili.com/video/av64256595/" target="_blank">B站视频03并发同步和锁</a></li>
+</ul>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/15_socket/" target="_blank">Go语言基础之网络编程</a>&rarr;<a href="https://www.bilibili.com/video/av66780479/" target="_blank">B站视频链接</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/16_test/" target="_blank">Go语言基础之单元测试</a>&rarr;<a href="https://www.bilibili.com/video/av66788366/" target="_blank">B站视频链接</a></p>
+
+<h2 id="go语言常用标准库">Go语言常用标准库</h2>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_fmt/" target="_blank">Go语言标准库之fmt与格式化占位符</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_time/" target="_blank">Go语言标准库之time</a> &rarr;<a href="https://www.bilibili.com/video/av62611999" target="_blank">B站视频链接</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_flag/" target="_blank">Go语言标准库之flag</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_log/" target="_blank">Go语言标准库之log</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_file/" target="_blank">Go语言基础之文件操作</a>&rarr;<a href="https://www.bilibili.com/video/av62612437" target="_blank">B站视频链接</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_strconv/" target="_blank">Go语言标准库之strconv</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_http/" target="_blank">Go语言标准库之net/http</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_context/" target="_blank">Go语言标准库之context</a></p>
+
+<p>持续更新中&hellip;</p>
+
+<h2 id="数据库相关">数据库相关</h2>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_mysql/" target="_blank">Go操作MySQL——database/sql使用指南</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/sqlx/" target="_blank">更强大、更好用的sqlx库使用指南</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_redis/" target="_blank">Go操作Redis——go-redis库使用指南</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_mongodb/" target="_blank">Go操作MongoDB</a></p>
+
+<h2 id="web开发相关">Web开发相关</h2>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_template/" target="_blank">Go语言标准库之template</a></p>
+
+<ul>
+<li><a href="https://www.bilibili.com/video/av78578060/" target="_blank">B站视频01——template模板初识</a></li>
+<li><a href="https://www.bilibili.com/video/av78693126/" target="_blank">B站视频02——模板语法详解</a></li>
+<li><a href="https://www.bilibili.com/video/av78808893/" target="_blank">B站视频03——模板嵌套</a></li>
+<li><a href="https://www.bilibili.com/video/av78918368/" target="_blank">B站视频04——模板继承</a></li>
+<li><a href="https://www.bilibili.com/video/av79417575/" target="_blank">B站视频05——模板补充</a></li>
+</ul>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/Gin_framework/" target="_blank">gin框架快速指南</a></p>
+
+<ul>
+<li><a href="https://www.bilibili.com/video/av82949383/" target="_blank">B站gin框架web实战视频教程</a></li>
+</ul>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/gin_routes_registry/" target="_blank">gin框架路由拆分与注册</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/jwt_in_gin/" target="_blank">在gin框架中使用JWT认证</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/live_reload_with_air/" target="_blank">使用Air实现Go程序实时热重载</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/graceful_shutdown/" target="_blank">优雅的关机或重启gin项目</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/how_to_deploy_go_app_using_docker/" target="_blank">如何使用docker部署Go Web程序</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/Cookie_Session/" target="_blank">Cookie和Session</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/use_zap_in_gin/" target="_blank">gin框架中使用zap日志库</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/read_gin_sourcecode/" target="_blank">gin框架源码解析</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/validator_usages/" target="_blank">gin框架中使用validator若干实用技巧</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/gin_swagger/" target="_blank">使用swagger生成接口文档</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/benchmark_tool/" target="_blank">HTTP Server常用压测工具介绍</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/ratelimit/" target="_blank">漏桶和令牌桶限流策略介绍及使用</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/deploy_go_app/" target="_blank">部署Go语言程序的N种方法</a></p>
+
+<h2 id="常用组件和技巧">常用组件和技巧</h2>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/json_tricks_in_go" target="_blank">你需要知道的那些go语言json技巧</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/functional_options_pattern/" target="_blank">option选项模式</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/singleton_in_go/" target="_blank">Go语言中的单例模式（翻译）</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/struct2map/" target="_blank">结构体转map的若干方法</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/viper_tutorial/" target="_blank">Go语言配置管理神器——Viper中文教程</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/protobuf/" target="_blank">protobuf初识</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/gRPC/" target="_blank">gRPC初识</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_nsq/" target="_blank">Go操作NSQ</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_kafka/" target="_blank">Go操作kafka</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_etcd/" target="_blank">Go操作etcd</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_gopsutil/" target="_blank">Go语言获取系统性能数据gopsutil库</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/gob_msgpack/" target="_blank">二进制协议gob及msgpack介绍</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_influxdb/" target="_blank">influxDB</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_elasticsearch/" target="_blank">Elasticsearch</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/go_logrus/" target="_blank">Go第三方日志库logrus</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/zap/" target="_blank">Go语言项目中使用zap日志库（翻译）</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/performance_optimisation/" target="_blank">Go pprof性能调优</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/makefile/" target="_blank">为Go项目编写Makefile</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/priority_in_go_select/" target="_blank">在select语句中实现优先级</a></p>
+
+<h2 id="gorm教程">GORM教程</h2>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/gorm/" target="_blank">GORM入门指南</a>&rarr;<a href="https://www.bilibili.com/video/av88602528/" target="_blank">B站GORM视频教程</a></p>
+
+<p><a href="https://www.liwenzhou.com/posts/Go/gorm_crud/" target="_blank">GORM CRUD操作指南</a></p>
+
+<p>持续更新中&hellip;</p>
+                        <hr>
+                        <p>
+                            <img src="/images/wxgzh_qrcode.jpg" alt="扫码关注微信公众号">
+                        </p>
+                        </div>
+                        
+                        <div id="gitalk-container"></div>
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/Go/priority_in_go_select/">Go语言在select语句中实现优先级</a></li>
+        
+        <li><a href="/posts/Go/deploy_go_app/">部署Go语言项目的 N 种方法</a></li>
+        
+        <li><a href="/posts/Go/ratelimit/">常用限流策略——漏桶与令牌桶介绍</a></li>
+        
+        <li><a href="/posts/Go/benchmark_tool/">常用的HTTP服务压测工具介绍</a></li>
+        
+        <li><a href="/posts/Go/gin_swagger/">使用swagger生成接口文档</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://www.liwenzhou.com/tags/Golang">Golang</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        
+<div id="search" accept-charset="utf-8" _lpchecked="1">
+  <ul id="s-u" class="search-result"></ul>
+  <input id="s-k" type="text" autocomplete="off" name="key" maxlength="20" placeholder="搜索一下">
+  <button id="s-b" type="button" class="submit icon-search"></button>
+</div>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">我亲自录制的视频课程</h3>
+        <a href="https://study.163.com/course/courseMain.htm?courseId=1210171207&share=2&shareId=480000002229610"><img src="/images/goweb2.png" width="250"></a>
+        <h3 class="widget-title">微信扫码支持一下</h3>
+        <img src="/images/zanshang_qr.jpg" width="256" height="239">
+    </section>
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://www.liwenzhou.com/posts/Go/go_menu/" title="【置顶】Go语言学习之路/Go语言教程">【置顶】Go语言学习之路/Go语言教程</a>
+    </li>
+    
+    <li>
+        <a href="https://www.liwenzhou.com/posts/Go/priority_in_go_select/" title="Go语言在select语句中实现优先级">Go语言在select语句中实现优先级</a>
+    </li>
+    
+    <li>
+        <a href="https://www.liwenzhou.com/posts/Go/deploy_go_app/" title="部署Go语言项目的 N 种方法">部署Go语言项目的 N 种方法</a>
+    </li>
+    
+    <li>
+        <a href="https://www.liwenzhou.com/posts/Go/ratelimit/" title="常用限流策略——漏桶与令牌桶介绍">常用限流策略——漏桶与令牌桶介绍</a>
+    </li>
+    
+    <li>
+        <a href="https://www.liwenzhou.com/posts/Go/benchmark_tool/" title="常用的HTTP服务压测工具介绍">常用的HTTP服务压测工具介绍</a>
+    </li>
+    
+    <li>
+        <a href="https://www.liwenzhou.com/posts/Go/gin_swagger/" title="使用swagger生成接口文档">使用swagger生成接口文档</a>
+    </li>
+    
+    <li>
+        <a href="https://www.liwenzhou.com/posts/Go/makefile/" title="为Go项目编写Makefile">为Go项目编写Makefile</a>
+    </li>
+    
+    <li>
+        <a href="https://www.liwenzhou.com/posts/Go/validator_usages/" title="validator库参数校验若干实用技巧">validator库参数校验若干实用技巧</a>
+    </li>
+    
+    <li>
+        <a href="https://www.liwenzhou.com/posts/Go/read_gin_sourcecode/" title="gin框架源码解析">gin框架源码解析</a>
+    </li>
+    
+    <li>
+        <a href="https://www.liwenzhou.com/posts/Go/use_zap_in_gin/" title="使用zap接收gin框架默认的日志并配置日志归档">使用zap接收gin框架默认的日志并配置日志归档</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://www.liwenzhou.com/categories/Development/">Development(14)</a>
+    </li>
+    
+    <li>
+        <a href="https://www.liwenzhou.com/categories/Django/">Django(3)</a>
+    </li>
+    
+    <li>
+        <a href="https://www.liwenzhou.com/categories/Front-end/">Front-end(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://www.liwenzhou.com/categories/Golang/">Golang(75)</a>
+    </li>
+    
+    <li>
+        <a href="https://www.liwenzhou.com/categories/JavaScript/">JavaScript(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://www.liwenzhou.com/categories/Python/">Python(13)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://www.liwenzhou.com/tags/Development/">Development</a>
+    
+    <a href="https://www.liwenzhou.com/tags/Django/">Django</a>
+    
+    <a href="https://www.liwenzhou.com/tags/Golang/">Golang</a>
+    
+    <a href="https://www.liwenzhou.com/tags/Python/">Python</a>
+    
+    <a href="https://www.liwenzhou.com/tags/about/">about</a>
+    
+    <a href="https://www.liwenzhou.com/tags/front-end/">front-end</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://geektutu.com" title="致力于分享有趣的技术实践">极客兔兔-有趣的技术实践</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="https://draveness.me/golang/" title="灯塔">draveness-Go语言设计与实现</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="https://www.cnblogs.com/liwenzhou/" title="Python全栈之路">Q1mi-Python全栈之路</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="https://www.cnblogs.com/zhaof" title="Python/Go语言之路">赵凡的博客</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="http://resn.cnblogs.com/" title="R_e-博客园">R_e-博客园</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="http://roddypy.com/" title="罗迪&#39;s Blog">罗迪&#39;s Blog</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">微信公众号</h3>
+        <img src="/images/qrcode_for_gzh.jpg" width="258" height="258">
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://www.liwenzhou.com/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://www.liwenzhou.com">李文周的博客 By 李文周</a>.本站博客未经授权禁止转载.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="http://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.<a href="http://www.beian.miit.gov.cn">京ICP备15037996号-1</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript" src="/js/page.js" async="true"></script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async="true"></script>
+
+
+
+<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+  <script src="/js/bootstrap.min.js"></script>
+
+  <script src="/js/post_category.1.js"></script>
+
+</body>
+</html>
