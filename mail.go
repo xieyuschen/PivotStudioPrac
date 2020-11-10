@@ -1,9 +1,10 @@
 package main
+
 import (
 	"gopkg.in/gomail.v2"
 )
 
-func main() {
+func Mail() {
 	// 初始化
 	m := gomail.NewMessage()
 
@@ -11,7 +12,7 @@ func main() {
 	m.SetHeader("From", "1259585247@qq.com")
 
 	// 给谁发送，支持多个账号
-	m.SetHeader("To", "932012237@qq.com")
+	m.SetHeader("To", "1259585247@qq.com")
 
 	// 抄送谁
 	//m.SetAddressHeader("Cc", "dan@example.com", "Dan")
@@ -20,7 +21,7 @@ func main() {
 	m.SetHeader("Subject", "今日知乎热榜")
 
 	// 邮件正文，支持 html
-	m.SetBody("text/html", "今日知乎热榜请查收" )
+	m.SetBody("text/html", "今日知乎热榜请查收")
 
 	// 附件
 	m.Attach("今日热榜.txt")
