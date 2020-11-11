@@ -24,7 +24,7 @@ func Mail() {
 	m.SetBody("text/html", "今日知乎热榜请查收")
 
 	// 附件
-	m.Attach("今日热榜.txt")
+	m.Attach("今日热榜.html")
 
 	// stmp服务，端口号，发送邮件账号，发送账号密码
 	d := gomail.NewDialer("smtp.qq.com", 587, "1259585247@qq.com", "srnwcnffvqjyfjeg")

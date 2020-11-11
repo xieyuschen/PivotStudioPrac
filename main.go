@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-var filename = "./今日热榜.txt"
+var filename = "./今日热榜.html"
 var f *os.File
 var err1 error
 
@@ -50,10 +50,13 @@ func main() {
 		f, err1 = os.Create(filename) //创建文件
 		fmt.Println("文件不存在")
 	}
+	//http ex：
+	//<p>第六：拍照写实；</p>//换行
+	//<b>越来越能感觉到：</b>//加粗
 	//打印时间戳
 	now := time.Now()
 	check(err1)
-	n, err1 := io.WriteString(f, "今年第"+strconv.Itoa(now.YearDay())+"期\n")
+	n, err1 := io.WriteString(f, "<b><p>今年第"+strconv.Itoa(now.YearDay())+"期</p></b>")
 	re := regexp.MustCompile(`<td class="([^"]+)"><a href="([^"]+)" target="([^"]+)" rel="([^"]+)" itemid="([^"]+)">([^"]+)</a></td>
 		                                    <td>([^"]+)</td>`)
 	match := re.FindAllSubmatch(content, -1)
@@ -61,20 +64,19 @@ func main() {
 		j := strconv.Itoa(i + 1)
 		check(err1)
 		//写入文件(字符串)
-		n, err1 = io.WriteString(f, "\n"+j)
-		n, err1 = io.WriteString(f, ":")
-		n, err1 = io.WriteString(f, string(m[6]))
-		n, err1 = io.WriteString(f, string(m[7])+"\n")
-		n, err1 = io.WriteString(f, "https://tophub.today"+string(m[2])+"\n")
+		n, err1 = io.WriteString(f, "<b><p>"+j+":</p></b>")
+		n, err1 = io.WriteString(f, "<b><p>"+string(m[6]))
+		n, err1 = io.WriteString(f, string(m[7])+"</p></b>")
+		n, err1 = io.WriteString(f, "<b><p>"+"https://tophub.today"+string(m[2])+"</p></b>")
 		Answerreach(string(m[2]))
 		check(err1)
-		fmt.Printf("写入 %d 个字节n", n)
+		fmt.Printf("写入 %d 个字节\n", n)
 		//fmt.Printf("%d: %s\n%s\n\n", i+1,m[6],m[7])
 		if i == 19 {
 			break
 		}
 	}
-	Mail() //邮件发送MM
+	Mail() //邮件发送
 }
 
 func check(e error) {
