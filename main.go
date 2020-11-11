@@ -5,13 +5,17 @@ import (
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 	"database/sql"
+	"math/rand"
 	"net/http"
+	"strings"
 	"time"
+	"net/smtp"
 )
 var MysqlDB *sql.DB
 type User struct {
 	account string `json:"account" form:"account"`		//gorm后为条件，json后为连接的表的字段
-	password []byte `gorm:"size:100;not null" json:"password" form:"password"`
+	password []byte `json:"password" form:"password"`
+	email string `json:"email" form:"email"`
 }
 type Article struct {
 	Author string			//用于存储发帖者
@@ -35,9 +39,10 @@ func main(){
 	}
 	defer MysqlDB.Close()
 	router := gin.Default()
+	router.GET("/emailcheck",EmailSend)
 	router.GET("/login",Login)						//登录
 	router.POST("/user/create", RegisterUser)		//注册
-	//router.GET("/user/forgetpassword", Forgetpassword)	//忘记密码,和邮箱相结合
+	router.GET("/user/forgetpassword", Forgetpassword)	//忘记密码,和邮箱相结合
 	auth := router.Group("")
 	auth.Use(AuthRequired())
 	{
@@ -49,25 +54,32 @@ func main(){
 	}
 	router.Run(":8080")
 }
-//注册并加密密码
+//注册并加密密码；添加注册邮件服务，发送验证码以注册账户
 func RegisterUser(c *gin.Context)  {
 	accountinput := c.Query("account")
 	passwordinput := c.Query("password")
+	emailinput := c.Query("email")
+	vcode := c.PostForm("vcode")
+
 	h := sha1.New()						//hash加密
 	h.Write([]byte(passwordinput))
 	pw := h.Sum(nil)					//hash加密
-	stmt, err := MysqlDB.Prepare("INSERT INTO savedaccount SET account=?, password=?")
+	stmt, err := MysqlDB.Prepare("INSERT INTO savedaccount SET account=?, password=?, email=?")
 	if err != nil{
 		c.JSON(http.StatusBadRequest, gin.H{
-			"msg":"Already have this account.",
+			"msg":"Already have this account or email address.",
 		})
 	}else {
-		_, err := stmt.Exec(accountinput, pw)
+		_, err := stmt.Exec(accountinput, pw, emailinput)
 		if err != nil{
-			c.JSON(http.StatusOK, gin.H{
-				"msg": "You create the account successfully.",
+			c.JSON(http.StatusBadRequest, gin.H{
+				"msg": "Failed to  create the account.",
 			})
+			return
 		}
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "You create the account successfully.",
+		})
 	}
 }
 //登录
@@ -96,9 +108,11 @@ func Login(c *gin.Context)  {
 		}
 	}
 }
-/*//忘记密码配合邮箱，暂时不会
+//忘记密码配合邮箱，暂时不会
 func Forgetpassword(c *gin.Context){
-}*/
+	EmailSend(c)
+
+}
 //cookie相关
 func AuthRequired() gin.HandlerFunc {
 	return func(c *gin.Context) {
@@ -207,5 +221,54 @@ func SeeArticles(c *gin.Context)  {
 			return
 		}
 		fmt.Println("Scan successd:", *A)
+	}
+}
+//邮箱
+//邮件发送
+func EmailSend(c *gin.Context)  {
+	emailinput := c.Query("email")
+	CodeDelete(emailinput)					//删除之前的验证码以重新生成
+	auth := smtp.PlainAuth("", "hustqiuzt@gmail.com", "qzt0419ryf0416.", "smtp.gmail.com")
+	to := []string{emailinput}
+	nickname := "PIVOT STUDIO"
+	user := "hustqiuzt@gmail.com"
+	subject := "Email address verification code."
+	content_type := "Content-Type: text/plain; charset=UTF-8"
+	body := CodeCreate(8)			//生成一个验证码
+	CodeSave(body, emailinput)
+	msg := []byte("To:" + strings.Join(to, ",") + "\r\nFrom: " + nickname + "<" + user + ">\r\nSubject: " + subject + "\r\n" + content_type + "\r\n\r\n" + body)
+	err := smtp.SendMail("smtp.gmail.com:25", auth, user, to, msg)
+	if err != nil{
+		fmt.Printf("Send mail error: %v\n", err)
+	}
+}
+//生成验证码,长度为8由上面注册程序里决定
+func CodeCreate(n int) string {
+	var letterRunes = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")	//rune的话下次可以把验证码改成中文，不过表里面的数据类型也要改就是了
+	rand.Seed(time.Now().UnixNano())
+	verification := make([]rune, n)
+	for i := range verification{
+		verification[i] = letterRunes[rand.Intn(len(letterRunes))]
+	}
+	return string(verification)
+}
+//将验证码存入数据库用以比对
+func CodeSave(verification string, emailaddress string)  {
+	stmt, err := MysqlDB.Prepare("INSERT  INTO vcode SET emailaddress=?,verificationcode=?")
+	if err != nil{
+		fmt.Printf("Create verification code failed, err:%v\n", err)
+	}else{
+		_, err := stmt.Exec(emailaddress, verification)
+		if err != nil{
+			fmt.Printf("Create verification code failed, err:%v\n", err)
+		}
+		fmt.Println("Create verification successful.")
+	}
+}
+//删除数据表中数据，重新发送验证码时使用
+func CodeDelete(emailaddress string)  {
+	_, err := MysqlDB.Exec("delete from vcode where emailaddress=?", emailaddress)
+	if err != nil{
+		return
 	}
 }
