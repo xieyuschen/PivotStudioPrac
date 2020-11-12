@@ -12,19 +12,18 @@ import (
 	"time"
 )
 
-var filename = "./今日热榜.html"
+var now = time.Now()
+var filename = "./今日热榜" + strconv.Itoa(now.YearDay()) + ".html"
 var f *os.File
 var err1 error
 
 func main() {
-
 	resp, err := http.Get("https://tophub.today/n/mproPpoq6O")
 	//异常时进行panic
 	if err != nil {
 		panic(err)
 	}
 	defer resp.Body.Close() //延时关闭
-
 	//状态码错误时输出错误码
 	if resp.StatusCode != http.StatusOK {
 		fmt.Printf("Error ststus code:%d", resp.StatusCode)

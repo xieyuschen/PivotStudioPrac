@@ -3,6 +3,7 @@ module go-test
 go 1.15
 
 require (
+	github.com/CodyGuo/godaemon v0.0.0-20200413142854-c36b39fdd071 // indirect
 	github.com/PuerkitoBio/goquery v1.6.0
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/jackdanger/collectlinks v0.0.0-20160421202702-24c4ee2870ba
