@@ -24,6 +24,10 @@ type Article struct {
 	Summary string			//用于存储内容概要
 	Content string			//用于存储文章主体内容
 }
+type VC struct {
+	verificationcode string
+	emailaddress string
+}
 //在开始前已经创建了两个数据表savedaccount & articles，一个用于存储用户账户密码数据，一个用于保存发的帖子的数据
 func main(){
 	//打开数据库，若错误返回错误
@@ -33,16 +37,13 @@ func main(){
 		return
 	}else{
 		fmt.Println("connect database success!")
-		//MysqlDB.SingularTable(true)			//使得默认表名和结构名相同
-		//MysqlDB.AutoMigrate(&User{})				//创建表名为user的表，约束与结构中相同
-		//fmt.Println("create table success!")
 	}
 	defer MysqlDB.Close()
 	router := gin.Default()
 	router.GET("/emailcheck",EmailSend)
 	router.GET("/login",Login)						//登录
 	router.POST("/user/create", RegisterUser)		//注册
-	router.GET("/user/forgetpassword", Forgetpassword)	//忘记密码,和邮箱相结合
+	router.POST("/user/forgetpassword", Forgetpassword)	//忘记密码,和邮箱相结合
 	auth := router.Group("")
 	auth.Use(AuthRequired())
 	{
@@ -56,14 +57,27 @@ func main(){
 }
 //注册并加密密码；添加注册邮件服务，发送验证码以注册账户
 func RegisterUser(c *gin.Context)  {
+	vc := new(VC)
 	accountinput := c.Query("account")
 	passwordinput := c.Query("password")
 	emailinput := c.Query("email")
 	vcode := c.PostForm("vcode")
-
+	//比对验证码
+	selectedrow := MysqlDB.QueryRow("SELECT emailaddress, verificationcode FROM vcode WHERE emailaddress=?", emailinput)
+	if err := selectedrow.Scan(&vc.emailaddress, &vc.verificationcode); err != nil{
+		c.JSON(http.StatusBadRequest, gin.H{
+			"msg":"Please get your verification code first.",
+		})
+		return
+	}
+	if vcode != vc.emailaddress {
+		fmt.Printf("Please input the right verification code.\n")
+		return
+	}
+	//比对结束
 	h := sha1.New()						//hash加密
 	h.Write([]byte(passwordinput))
-	pw := h.Sum(nil)					//hash加密
+	pw := h.Sum(nil)					//hash加密结束
 	stmt, err := MysqlDB.Prepare("INSERT INTO savedaccount SET account=?, password=?, email=?")
 	if err != nil{
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -108,10 +122,32 @@ func Login(c *gin.Context)  {
 		}
 	}
 }
-//忘记密码配合邮箱，暂时不会
+//忘记密码，需先获得验证码，同时在输入url时post vcode 和 newpassword
 func Forgetpassword(c *gin.Context){
-	EmailSend(c)
-
+	vc := new(VC)
+	accountinput := c.Query("account")
+	emailinput := c.Query("email")
+	vcode := c.PostForm("vcode")
+	newpassword := c.PostForm("newpassword")
+	//比对验证码
+	selectedrow := MysqlDB.QueryRow("SELECT emailaddress, verificationcode FROM vcode WHERE emailaddress=?", emailinput)
+	if err := selectedrow.Scan(&vc.emailaddress, &vc.verificationcode); err != nil{
+		c.JSON(http.StatusBadRequest, gin.H{
+			"msg":"Please get your verification code first.",
+		})
+		return
+	}
+	if vcode != vc.emailaddress {
+		fmt.Printf("Please input the right verification code.\n")
+		return
+	}
+	//比对结束
+	result, err := MysqlDB.Exec("UPDATE savedaccount SET password=? where account=?", newpassword, accountinput)
+	if err != nil{
+		fmt.Printf("Something wrong when you change your password, err:%v\n", err)
+		return
+	}
+	fmt.Println("Revise article successd:", result)
 }
 //cookie相关
 func AuthRequired() gin.HandlerFunc {
