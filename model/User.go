@@ -36,22 +36,18 @@ func CheckUser(name string)(code int){
 
 
 //检查验证码是否正确
-func CheckVcode(name string,tempUser User) int{
+func CheckVcode(tempUser User) int{
 	var user User
 	code := errmsg.SUCCSE //错误/正确码
-	db.Select("id").Where("username = ?",name).First(&user)
+	db.Where("username = ?",tempUser.Username).First(&user)
 	//核对信息
-	//这里对临时用户与注册时的核对还有一点小问题
+	//这里信息的核对还有一点问题
 	//离散还没预习完时间不大够也不知道能不能完成qwq
-	/*if user.ID <=0{
-		code = errmsg.ERROR_USER_EXIST
-		return code
-	}
-	if user.Role!=1{
+	if user.Role ==0{
 		code=errmsg.ERROR_TUSER_ROLE
 		return code
 	}
-	if user.Email!=tempUser.Email {
+	/*if user.Email!=tempUser.Email {
 		code = errmsg.ERROR_MAIL_WRONG
 		return code
 	}*/
@@ -93,14 +89,14 @@ func SendEmail(emailAdress string,vcode string)error{
 	return nil
 }
 //创建临时用户，仅存储用户名、及EmailAdress,ValidCode
-func CreateTempUser(data *User,vcode string)int{
-	data.ValidCode=vcode
+func CreateTempUser(data *User)int{
 	data.Role=1//role==1为临时用户
 	err :=db.Create(&data).Error
 	if err!=nil{
 		return errmsg.ERROR  //500
-	}
-	return errmsg.SUCCSE //200
+	}else {
+		return errmsg.SUCCSE
+	} //200
 }
 //注册正式用户
 func CreateUser(data *User)int{

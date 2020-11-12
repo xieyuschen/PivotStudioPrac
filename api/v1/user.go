@@ -21,7 +21,14 @@ func GetVcode(c *gin.Context){
 			code = errmsg.ERROR_EMAILSEND_FAIL
 		}
 		if code==errmsg.SUCCSE {
-			code =model.CreateTempUser(&data,vcode)//创建临时用户储存用户名及邮件地址正确验证码
+			code =model.CreateTempUser(&data)//创建临时用户储存用户名及邮件地址正确验证码
+			if code==errmsg.ERROR {
+				c.JSON(http.StatusOK, gin.H{
+					"status":  code,
+					"data":    "create tempUser failed...",
+					"message": errmsg.GetErrMsg(code),
+				})
+			}
 		}
 	}
 	if code==errmsg.SUCCSE {
@@ -33,7 +40,7 @@ func GetVcode(c *gin.Context){
 	}else{
 		c.JSON(http.StatusOK,gin.H{
 			"status":code,
-			"data":"something went wrong...",
+			"data":"something went wrong,please check...",
 			"message":errmsg.GetErrMsg(code),
 		})
 	}
@@ -43,7 +50,8 @@ func AddUser(c *gin.Context ){
 	var data model.User
 	_=c.ShouldBindJSON(&data)
 	//检查验证码是否正确
-	code:= model.CheckVcode(data.Username,data)
+	code:= model.CheckVcode(data)
+
 	model.DeleteUserName(data.Username) // 删除临时用户
 	if code==errmsg.SUCCSE {
 		model.CreateUser(&data)
@@ -55,6 +63,7 @@ func AddUser(c *gin.Context ){
 	}else{
 		c.JSON(http.StatusOK ,gin.H{
 			"status":code,
+			//"data":data,
 			"data":"something went wrong,please regist again...",
 			"message":errmsg.GetErrMsg(code),
 		})
