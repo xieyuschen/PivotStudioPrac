@@ -8,23 +8,58 @@ import (
 	"strconv"
 )
 
-// 添加用户
+func GetVcode(c *gin.Context){
+	var data model.User
+	_ = c.ShouldBindJSON(&data)//接受请求
+	//检查用户名是否重复
+	code:= model.CheckUser(data.Username)
+	//生成验证码并储存，通过邮件发送给用户
+	if code==errmsg.SUCCSE {
+		vcode := model.GenerateVcode()
+		errmail := model.SendEmail(data.Email, vcode)
+		if  errmail != nil {
+			code = errmsg.ERROR_EMAILSEND_FAIL
+		}
+		if code==errmsg.SUCCSE {
+			code =model.CreateTempUser(&data,vcode)//创建临时用户储存用户名及邮件地址正确验证码
+		}
+	}
+	if code==errmsg.SUCCSE {
+		c.JSON(http.StatusOK, gin.H{
+			"status":  code,
+			"data":    "please check your emailbox for the valid-code",
+			"message": errmsg.GetErrMsg(code),
+		})
+	}else{
+		c.JSON(http.StatusOK,gin.H{
+			"status":code,
+			"data":"something went wrong...",
+			"message":errmsg.GetErrMsg(code),
+		})
+	}
+}
+// 添加用户，需要输入用户名，密码，验证码，邮箱
 func AddUser(c *gin.Context ){
 	var data model.User
 	_=c.ShouldBindJSON(&data)
-	code:= model.CheckUser(data.Username)
+	//检查验证码是否正确
+	code:= model.CheckVcode(data.Username,data)
+	model.DeleteUserName(data.Username) // 删除临时用户
 	if code==errmsg.SUCCSE {
 		model.CreateUser(&data)
-	}
-	if code == errmsg.ERROR_USERNAME_USED {
-		code = errmsg.ERROR_USERNAME_USED
+		c.JSON(http.StatusOK ,gin.H{
+			"status":code,
+			"data":data,
+			"message":errmsg.GetErrMsg(code),
+		})
+	}else{
+		c.JSON(http.StatusOK ,gin.H{
+			"status":code,
+			"data":"something went wrong,please regist again...",
+			"message":errmsg.GetErrMsg(code),
+		})
 	}
 
-	c.JSON(http.StatusOK ,gin.H{
-		"status":code,
-		"data":data,
-		"message":errmsg.GetErrMsg(code),
-	})
 }
 
 //删除用户

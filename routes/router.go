@@ -26,8 +26,10 @@ func InitRouter() {
 		logInRouter.PUT("article/:id",v1.EditArt)
 		logInRouter.DELETE("article/:id",v1.DeleteArt)
 	}
+	//不登录也能访问
 	pubRouter:=r.Group("api/v1")
 	{
+		pubRouter.POST("user/getvcode",v1.GetVcode)
 		pubRouter.POST("user/add",v1.AddUser)
 		pubRouter.POST("login",v1.Login)
 	}
