@@ -1,13 +1,13 @@
 package main
 import (
+	Articleoperate "PS_m1_ture/Articleoperate"
+	"PS_m1_ture/Cookieoperate"
+	"PS_m1_ture/Emailoperate"
+	"PS_m1_ture/Useroperate"
+	"database/sql"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	_"github.com/go-sql-driver/mysql"
-	"database/sql"
-	"github.com/PivotStudioPrac/Useroperate"
-	"github.com/PivotStudioPrac/Emailoperate"
-	"github.com/PivotStudioPrac/Cookieoperate"
-	"github.com/PivotStudioPrac/Articleoperate"
+	_ "github.com/go-sql-driver/mysql"
 )
 //在开始前已经创建了两个数据表savedaccount & articles，一个用于存储用户账户密码数据，一个用于保存发的帖子的数据
 func main(){
