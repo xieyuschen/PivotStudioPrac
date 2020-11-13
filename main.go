@@ -17,7 +17,16 @@ var filename = "./今日热榜" + strconv.Itoa(now.YearDay()) + ".html"
 var f *os.File
 var err1 error
 
+//简易定时器
 func main() {
+	do()
+	for {
+		time.Sleep(time.Hour * 24)
+		do()
+	}
+}
+
+func do() {
 	resp, err := http.Get("https://tophub.today/n/mproPpoq6O")
 	//异常时进行panic
 	if err != nil {
