@@ -29,8 +29,9 @@ func InitRouter() {
 	//不登录也能访问
 	pubRouter:=r.Group("api/v1")
 	{
-		pubRouter.POST("user/getvcode",v1.GetVcode)
-		pubRouter.POST("user/add",v1.AddUser)
+		pubRouter.POST("user/add",v1.AddDireUser )
+		pubRouter.POST("user/vcode/get",v1.GetVcode)
+		pubRouter.POST("user/vcode/add",v1.AddUser)
 		pubRouter.POST("login",v1.Login)
 	}
 	_ = r.Run(utils.HttpPort)

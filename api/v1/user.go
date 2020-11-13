@@ -70,7 +70,27 @@ func AddUser(c *gin.Context ){
 	}
 
 }
-
+//注册用户（无需验证码）
+func AddDireUser(c *gin.Context){
+	var data model.User
+	_=c.ShouldBindJSON(&data)
+	code:=model.CheckUser(data.Username)
+	if code==errmsg.SUCCSE {
+		model.CreateUser(&data)
+		c.JSON(http.StatusOK ,gin.H{
+			"status":code,
+			"data":data,
+			"message":errmsg.GetErrMsg(code),
+		})
+	}else{
+		c.JSON(http.StatusOK ,gin.H{
+			"status":code,
+			//"data":data,
+			"data":"something went wrong,please regist again...",
+			"message":errmsg.GetErrMsg(code),
+		})
+	}
+}
 //删除用户
 func DeleteUser(c *gin.Context ){
 	id,_:= strconv.Atoi(c.Param("id"))
