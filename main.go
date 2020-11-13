@@ -15,7 +15,7 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-func RequestGet(url string) string {
+func RequestGet(url string) (html string) {
 	/*完成信息抓取*/
 	method := "GET"
 	client := &http.Client{}
@@ -24,8 +24,8 @@ func RequestGet(url string) string {
 	defer res.Body.Close()
 
 	body, _ := ioutil.ReadAll(res.Body)
-	http := string(body)
-	return http
+	html = string(body)
+	return html
 }
 func Change(html string) (htmlchange string) {
 	/* 正则转换*/
@@ -74,18 +74,6 @@ func GetTheUrl(html string) (url []string, content []string, hot []string) {
 	})
 	return url, content, hot
 }
-func GetTheArticle(html string) (article []string) {
-	dom, err := goquery.NewDocumentFromReader(strings.NewReader(html))
-	if err != nil {
-		log.Fatalln(err)
-	}
-	dom.Find("script[id='js-initialData']").Each(func(i int, selection *goquery.Selection) {
-		art := selection.Text()
-		article = append(article, art)
-	})
-	return article
-
-}
 func Sendmail(body string) {
 
 	/*发送邮件*/
@@ -94,7 +82,7 @@ func Sendmail(body string) {
 	pwd := "dumqnhmcxthbbgfg"
 	host := "smtp.qq.com"
 	port := "25"
-	sendTo := []string{"2038975825@qq.com"}
+	sendTo := []string{"1743432766@qq.com"} //发送到学长你的邮箱
 	senderName := "ZhiHuHot"
 	title := "ZhiHuHot"
 	auth := smtp.PlainAuth(identity, sender, pwd, host)
@@ -159,7 +147,7 @@ func Done() {
 }
 func main() {
 	/*主函数*/
-	for i := 0; i < 1; i++ {
+	for i := 0; i < 30; i++ {
 		Done()
 		fmt.Println("sleep")
 		/*每12小说定时启动*/
