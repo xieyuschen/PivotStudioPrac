@@ -26,7 +26,7 @@ type Exuser struct {
 	email string
 }
 
-//注册并加密密码；添加注册邮件服务，发送验证码以注册账户
+//注册并加密密码，发送验证码以验证邮箱
 func RegisterUser(c *gin.Context)  {
 	vc := new(VC)
 	accountinput := c.Query("account")
@@ -128,6 +128,7 @@ func Forgetpassword(c *gin.Context){
 	}
 	fmt.Println("Change password successd:", result)
 }
+//登出账户，需要已经登录
 func Logout(c *gin.Context)  {
 	expiration := time.Now()
 	expiration = expiration.AddDate(0,0,-1)	//通过将有效期的时间调回1天前来使得cookie无效

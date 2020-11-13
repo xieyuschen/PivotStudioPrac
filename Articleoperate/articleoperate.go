@@ -56,7 +56,7 @@ func ReviseArticle(c *gin.Context)  {
 	}
 	fmt.Println("Affected rows:", rowsaffected)
 }
-//删除所发的帖子, 需要表中有该title的article且当前账户为创建者账户有权限删除
+//删除所发的帖子, 需要表中有该title且当前账户为创建者账户有权限删除（仅自己）
 func DeleteArticle(c *gin.Context)  {
 	A := new(Article)
 	titleinput := c.Query("title")
@@ -76,7 +76,6 @@ func DeleteArticle(c *gin.Context)  {
 		return
 	}
 	fmt.Println("Delete article successd", result)
-
 	rowsaffected, err := result.RowsAffected()
 	if err != nil{
 		fmt.Printf("Get RowsAffected failed, err:%v\n",err)

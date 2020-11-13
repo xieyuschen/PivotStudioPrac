@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="368db005-b1bb-456d-bc55-84d5dc80b537" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Articleoperate/articleoperate.go" beforeDir="false" afterPath="$PROJECT_DIR$/Articleoperate/articleoperate.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cookieoperate/cookieoperate.go" beforeDir="false" afterPath="$PROJECT_DIR$/Cookieoperate/cookieoperate.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Useroperate/useroperate.go" beforeDir="false" afterPath="$PROJECT_DIR$/Useroperate/useroperate.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +21,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="E:\Go" />
+  <component name="GOROOT" path="C:\Go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -41,7 +42,7 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoLibrariesConfigurableProvider" />
+    <property name="settings.editor.selected.configurable" value="go.sdk" />
   </component>
   <component name="RunManager">
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -76,31 +77,47 @@
     </state>
     <state x="833" y="203" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1605238206142" />
     <state x="1041" y="256" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1605144428079" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1605238503939">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="914" height="346" key="GridCell.Tab.0.bottom" timestamp="1605250069906">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1605238503939" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604501443330" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1605238503939">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="914" height="346" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605250069906" />
+    <state width="914" height="346" key="GridCell.Tab.0.center" timestamp="1605250069906">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1605238503939" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604501443330" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1605238503939">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="914" height="346" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605250069906" />
+    <state width="914" height="346" key="GridCell.Tab.0.left" timestamp="1605250069906">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1605238503939" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604501443330" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1605238503939">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="914" height="346" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605250069906" />
+    <state width="914" height="346" key="GridCell.Tab.0.right" timestamp="1605250069906">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1605238503939" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604501443330" />
-    <state x="540" y="113" key="SettingsEditor" timestamp="1605238532164">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="914" height="346" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605250069906" />
+    <state width="914" height="346" key="GridCell.Tab.1.bottom" timestamp="1605250069906">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="914" height="346" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605250069906" />
+    <state width="914" height="346" key="GridCell.Tab.1.center" timestamp="1605250069906">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="914" height="346" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605250069906" />
+    <state width="914" height="346" key="GridCell.Tab.1.left" timestamp="1605250069906">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="914" height="346" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605250069906" />
+    <state width="914" height="346" key="GridCell.Tab.1.right" timestamp="1605250069906">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="914" height="346" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605250069906" />
+    <state x="922" y="160" key="SettingsEditor" timestamp="1605248897199">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="540" y="113" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1605238532164" />
-    <state x="922" y="160" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1605189056619" />
+    <state x="922" y="160" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1605248897199" />
     <state x="1479" y="429" width="441" height="364" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1604647361560">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
