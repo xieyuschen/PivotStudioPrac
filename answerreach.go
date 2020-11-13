@@ -8,9 +8,12 @@ import (
 	"strings"
 )
 
-//访问知乎回答（来不及重构了）
+//访问知乎回答（没重构完）
 func Answerreach(a string) {
+
+	//访问具体的知乎回答
 	res, err := http.Get("https://tophub.today" + a)
+	//错误处理
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -19,20 +22,22 @@ func Answerreach(a string) {
 		log.Fatalf("status code error: %d %s", res.StatusCode, res.Status)
 	}
 
+	//加载 HTML document对象
 	doc, err := goquery.NewDocumentFromReader(res.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	//选择元素
 	doc.Find(".QuestionHeader .QuestionHeader-content .QuestionHeader-main").Each(func(i int, s *goquery.Selection) {
-		questionTitle, _ := s.Find(".QuestionHeader-title").Html()
-		questionContent, _ := s.Find(".QuestionHeader-detail").Html()
+		//questionTitle, _ := s.Find(".QuestionHeader-title").Html()
+		//questionContent, _ := s.Find(".QuestionHeader-detail").Html()
 		//questionContent = questionContent[0 : len(questionContent)-12]
 		check(err1)
 		//fmt.Println("questionTitle：", questionTitle)
 		//fmt.Println("questionContent：", questionContent)
-		_, err1 = io.WriteString(f, questionTitle)
-		_, err1 = io.WriteString(f, questionContent)
+		//_, err1 = io.WriteString(f, questionTitle)
+		//_, err1 = io.WriteString(f, questionContent)
 	})
 
 	doc.Find(".ContentItem-actions").Each(func(i int, s *goquery.Selection) {
@@ -51,8 +56,6 @@ func Answerreach(a string) {
 		//_, err1= io.WriteString(f, head_url)
 
 		_, err1 = io.WriteString(f, "<p><b>作者："+author+"</b></p>")
-		//<p>第六：拍照写实；</p>
-		//<b>越来越能感觉到：</b>
 		//voters := s.Find(".Voters").Text()//赞同数
 		//voters = strings.Split(voters, " ")[0]
 		content, _ := s.Find(".RichContent-inner").Html() //带标签的可以用Html()
